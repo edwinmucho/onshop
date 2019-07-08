@@ -1,0 +1,13 @@
+*.log
+*.pot
+*.pyc
+*~
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store
+media
+
+mysql.cnf
+s3_bucket.json
