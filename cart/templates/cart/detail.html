@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+장바구니
+{% endblock %}
+
+{% block content %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">사진 </th>
+        <th scope="col">상품</th>
+        <th scope="col">갯수</th>
+        <th scope="col">삭제</th>
+        <th scope="col">개당 가격</th>
+        <th scope="col">합계</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in cart %}
+      {% with product = item.product %}
+      <tr>
+        <th scope="row">
+          <a href="{{ product.get_absolute_url }}">
+            <img src="{{ product.image_url|default_if_none:'# }}" class="img-thumb-nail">
+          </a>
+        </th>
+        <td>{{ product.name }}</td>
+        <td>
+          <form action="{% url  'cart:product_add' product.id %}">
+            {{ item.quantity_form.quantity }}
+            {{ item.quantity_form.is_update }}
+            <input type="submit" class="btn btn-primary" value="Update">
+          </form>
+        </td>
+        <td><a href="{% url 'cart:product_remove' product.id %}">삭제</a></td>
+        <td class="num">{{ item.price }} 원</td>
+        <td class="num">{{ item.total_price }} 원</td>
+      </tr>
+      {% endwith %}
+    {% endfor %}
+
+    <tr class="total">
+      <td> 총합 </td>
+      <td colspan="4"></td>
+      <td class="num">{{ cart.get_product_total }} 원</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p class="text-right"><a href="{% url 'shop:product_all'%}" class="btn btn-secondary">쇼핑 이어하기</a></p>
+
+{% endblock %}

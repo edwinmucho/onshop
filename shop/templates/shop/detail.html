@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Product Detail
+제품 상세 정보
 {% endblock %}
 
 {% block content %}
@@ -12,12 +12,13 @@ Product Detail
       </div>
       <div class="col">
         <h1 class="display-6">{{ product.name }}</h1>
-        <p><span class="badge badge-secondary">Price</span>{{ product.price }}</p>
+        <p><span class="badge badge-secondary">가격</span>{{ product.price }}</p>
         <form action="" method="post">
+          {{ add_to_cart }}
           {% csrf_token %}
           <input type="submit" class="btn btn-primary btn-sm" value="Add to Cart">
         </form>
-        <h5><span class="badge badge-secondary">Description</span> {{ product.description | linebreaks }}</h5>
+        <h5><span class="badge badge-secondary">제품 설명</span> {{ product.description | linebreaks }}</h5>
       </div>
     </div>
   </div>
