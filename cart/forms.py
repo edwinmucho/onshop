@@ -10,7 +10,6 @@ class AddProductForm(forms.Form):
     # 유효성 체크
     def clean_quantity(self):
         data = self.cleaned_data['quantity']
-        print("check_ data!!!!!!!!!!!!!!! ")
         #Check minus
         if data < 0:
             raise ValidationError(_("Invalid data : Quantity isn\'t minus"))
