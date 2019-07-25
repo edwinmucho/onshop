@@ -20,7 +20,7 @@ Category Page
         {% if current_category %}
           {{ current_category.name }}
         {% else %}
-          All Products
+          전체 상품 목록
         {% endif %}
       </div>
 
@@ -31,9 +31,9 @@ Category Page
               <img src="{{ product.image_url|default_if_none:'#'}}" alt="Product Image" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} 원</p>
                 <p class="card-text">{{ product.description}}
-                  <span class="badge">${{ product.price}}</span>
-                  <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View Detail</a>
+                  <a href="{{ product.get_absolute_url }}" class="btn btn-primary">자세히 보기</a>
                 </p>
               </div>
             </div>

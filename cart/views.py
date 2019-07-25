@@ -23,20 +23,21 @@ def remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
+
     return redirect('cart:detail')
 
 def detail(request):
     cart = Cart(request)
 
-    init_val = {
-        'quantity' : product['quantity'],
-        'is_update':True # 장바구니에서는 업데이트 True
-        }
     passon = {
         'cart': cart
         }
 
     for product in cart:
+        init_val = {
+            'quantity' : product['quantity'],
+            'is_update':True # 장바구니에서는 업데이트 True
+            }
         product['quantity_form'] = AddProductForm(initial=init_val)
 
     return render(request, 'cart/detail.html', passon)

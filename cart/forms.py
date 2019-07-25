@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class AddProductForm(forms.Form):
-    quantity = forms.IntegerField(label="구매 개수", label_suffix=" = ")
+    quantity = forms.IntegerField(label="구매 개수", label_suffix=" = ", min_value=1)
     is_update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
     # 유효성 체크
