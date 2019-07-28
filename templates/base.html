@@ -28,9 +28,10 @@
         {% endif %}
       </li>
       <li class="nav-item active">
-      <a href="{% url 'cart:detail' %}" class="nav-link btn btn-outline-success">장바구니
+      장바구니
+      <a href="{% url 'cart:detail' %}" class="nav-link btn btn-outline-success">
       {% if cart|length > 0 %}
-        ${{ cart.get_product_total }} with {{ cart|length }} items
+        합계: {{ cart.get_total_price }} 원
       {% else %}
         : 비어있음
       {% endif %}

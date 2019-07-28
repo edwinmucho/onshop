@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'storages',
     'shop',
     'cart',
+    'coupon',
     'django.contrib.sites',
     'allauth',
     'allauth.account',

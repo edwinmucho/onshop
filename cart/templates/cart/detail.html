@@ -40,15 +40,33 @@
       </tr>
       {% endwith %}
     {% endfor %}
+    <!-- 쿠폰 부분 시작 -->
+    {% if cart.coupon %}
+      <tr class="subtotal">
+        <td>합계</td>
+        <td colspan="4"></td>
+        <td>{{ cart.get_product_total }} 원</td>
+      </tr>
+      <tr>
+        <td>"{{ cart.coupon.code }}" 할인 쿠폰 ({{ cart.coupon.amount }}원)</td>
+        <td colspan="4"></td>
+        <td>- {{ cart.get_discount_total }} 원</td>
+      </tr>
+    {% endif %}
 
     <tr class="total">
       <td> 총합 </td>
       <td colspan="4"></td>
-      <td class="num">{{ cart.get_product_total }} 원</td>
+      <td class="num">{{ cart.get_total_price }} 원</td>
     </tr>
     </tbody>
   </table>
-
+  <p> 쿠폰 사용 </p>
+  <form action="{% url "coupon:add" %}" method="post">
+    {{ add_coupon }}
+    <input type="submit" value="추가">
+    {% csrf_token %}
+  </form>
   <p class="text-right"><a href="{% url 'shop:product_all'%}" class="btn btn-secondary">쇼핑 이어하기</a></p>
 
 {% endblock %}
